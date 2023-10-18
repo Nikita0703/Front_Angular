@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Employees</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/add">Add Employee</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <!--Main Content-->
+    <div class="mt-5">
+        <h1 class="text-center">Employees</h1>
+        <div class="container">
+            <!--Add User Button-->
+            <div class="my-3">
+                <a href="/add"><button type="button" class="btn btn-primary">Add Employee</button></a>
+            </div>
+            <table class="table border" >
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Salary</th>
+                    <th scope="col">Department</th>
+                    <th scope = "col">Car</th>
+                    <th scope="col">House</th>
+                    <th scope="col">Pets</th>
+                    <th scope="col">Projectts</th>
+                    <th scope="col">Options</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of users">
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.surname}}</td>
+                    <td>{{user.salary}}</td>
+                    <td>{{user.department}}</td>
+                    <td>
+                      <span class = "item">id:{{user.car.id}}, </span><br/>
+                      <span class = "item">model:{{user.car.model}}, </span><br/>
+                      <span class = "item">year:{{user.car.made}}</span>
+                    </td>
+                    <td>
+                      <span class = "item">id:{{user.house.id}}, </span><br/>
+                      <span class = "item">adress:{{user.house.adress}}, </span><br/>
+                      <span class = "item">flour:{{user.house.flour}}</span><br/>
+                      <span class = "item">flat:{{user.house.flat}}</span>
+                    
+                    </td>
+
+                    <td>
+                      <ul>
+                          <li *ngFor="let pet of user.pets">
+                            <span class = "item">id:{{pet.id}}, </span><br/>
+                            <span class = "item">vid:{{pet.vid}}, </span><br/>
+                            <span class = "item">name:{{pet.petname}}</span><br/>
+                          </li>
+                        </ul>
+                         
+                      </td>
+                    
+                    <td>
+                    <ul>
+                        <li *ngFor="let project of user.projects">
+                          <span class = "item">id:{{project.id}}, </span><br/>
+                          <span class = "item">title:{{project.title}}, </span><br/>
+                          <span class = "item">year:{{project.year}}</span><br/>
+                        </li>
+                      </ul>
+                       
+                    </td>
+                    <td>
+                        <div class="d-inline mx-2">
+                            <button class="btn btn-warning" (click)="updateUser(user.id)" type="button">Update</button>
+                        </div>
+                        <div class="d-inline">
+                          <button class="btn btn-danger" (click)="deleteUser(user.id)" type="button">Delete</button>
+                        </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</body>
+</html>
+
+<router-outlet></router-outlet>

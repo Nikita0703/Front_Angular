@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    
+    <!--Main Content-->
+    <div class="my-5">
+      <div class="mx-auto w-25 " style="max-width:100%;">
+       
+        <h2 class="text-center mb-3">Add Employee</h2>
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmitEmployee()">
+          <!--name-->
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input id="name"  formControlName="name" type="text" name="name" class="form-control" placeholder="Name" required>
+            </div>
+          </div>
+
+          <!--Email-->
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="surname" class="form-label">Surname</label>
+              <input id="surname" type="text"  formControlName="surname" name="surname" class="form-control" placeholder="Surname" required>
+            </div>
+          </div>
+          
+          <!--PNo-->
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="salary" class="form-label">Salary</label>
+              <input id="salary" type="text" name="salary"  formControlName="salary" class="form-control" placeholder="Salary" required>
+            </div>
+          </div>
+         
+          <!--PNo-->
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="Department" class="form-label">Department</label>
+              <input id="Department" type="text" name="department"  formControlName="department" class="form-control" placeholder="Department" required>
+            </div>
+          </div>
+         
+          
+          
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <input  class="btn btn-primary w-100" type="submit" value="Submit">
+            </div>
+          </div>
+
+          <div>
+            
+          </div>
+        </form>
+
+        <h2>Car</h2>
+        <form [formGroup]="carForm" (ngSubmit)="onSubmitCar()">
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="model" class="form-label">Model</label>
+              <input id="model" type="text" name="model"  formControlName="model" class="form-control" placeholder="model" required>
+            </div>
+          </div>
+         
+          <!--PNo-->
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="made" class="form-label">Year</label>
+              <input id="made" type="text" name="made"  formControlName="made" class="form-control" placeholder="year" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <input  class="btn btn-primary w-100" type="submit" value="SubmitCar">
+            </div>
+          </div>
+
+        </form>  
+        
+        <h2>House</h2>
+        <form [formGroup]="houseForm" (ngSubmit)="onSubmitHouse()">
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="adress" class="form-label">Adress</label>
+              <input id="adress" type="text" name="adress"  formControlName="adress" class="form-control" placeholder="adress" required>
+            </div>
+          </div>
+         
+          <!--PNo-->
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="flour" class="form-label">Flour</label>
+              <input id="flour" type="text" name="flour"  formControlName="flour" class="form-control" placeholder="flour" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="flat" class="form-label">Flat</label>
+              <input id="flat" type="text" name="flat"  formControlName="flat" class="form-control" placeholder="flat" required>
+            </div>
+          </div>
+          
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <input  class="btn btn-primary w-100" type="submit" value="SubmitHouse">
+            </div>
+          </div>
+
+        </form>  
+
+        <h2>Pets</h2>
+        <form [formGroup]="petForm" (ngSubmit)="onSubmitPet()">
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="vid" class="form-label">Vid</label>
+              <input id="vid" type="text" name="vid"  formControlName="vid" class="form-control" placeholder="vid" required>
+            </div>
+          </div>
+         
+          <!--PNo-->
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="petname" class="form-label">Name</label>
+              <input id="petname" type="text" name="petname"  formControlName="petname" class="form-control" placeholder="name" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <input  class="btn btn-primary w-100" type="submit" value="SubmitPet">
+            </div>
+          </div>
+
+        </form>  
+        
+        <h2>Projects</h2>
+        <form [formGroup]="projectForm" (ngSubmit)="onSubmitProject()">
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input id="title" type="text" name="title"  formControlName="title" class="form-control" placeholder="title" required>
+            </div>
+          </div>
+         
+          <!--PNo-->
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="year" class="form-label">Yeae</label>
+              <input id="year" type="text" name="year"  formControlName="year" class="form-control" placeholder="year" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 form-group">
+              <input  class="btn btn-primary w-100" type="submit" value="SubmitProject">
+            </div>
+          </div>
+
+        </form>  
+
+      </div>
+    </div>
+</body>
+</html>
