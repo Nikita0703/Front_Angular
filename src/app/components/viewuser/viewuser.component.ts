@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Employee } from 'src/app/Employee';
 import { AppService } from 'src/app/app.service';
 
 @Component({
@@ -9,8 +10,9 @@ import { AppService } from 'src/app/app.service';
 })
 export class ViewusersComponent implements OnInit {
 
-users: any[] | undefined
-  url: string = "http://localhost:8080/api1/employee";
+users: Employee[] | undefined
+
+url: string = "http://localhost:8080/api1/employee";
 
   constructor(private service: AppService, private router: Router) { 
    

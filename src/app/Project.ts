@@ -1,11 +1,12 @@
 import { Employee } from "./Employee"
 export class Project{
-    
-    title:any
-    year:any
+    id:any
+    title:string
+    year:number
 
-    constructor(title: any, year: any) {
-    this.title = title;
+    constructor(id:any,title: string, year: number) {
+   this.id = id;
+      this.title = title;
     this.year = year;
   }
 }

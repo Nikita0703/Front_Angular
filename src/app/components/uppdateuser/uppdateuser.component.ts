@@ -4,27 +4,34 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import { Employee } from 'src/app/Employee';
 import { EmployeeId } from 'src/app/EmployeeId'
+import { Project } from 'src/app/Project';
+import { Car } from 'src/app/Car';
+import { House } from 'src/app/House';
+import {Pet} from 'src/app/Pet'
 
 @Component({
   selector: 'app-updateuser',
   templateUrl: './uppdateuser.component.html',
   styleUrls: ['./uppdateuser.component.css']
 })
+
 export class UpdateuserComponent implements OnInit {
 
-  emp?: any;
+  emp: Employee;
   data: any;
+  
   form: FormGroup;
   projectForm:FormGroup;
   carForm:FormGroup;
   houseForm:FormGroup;
   petForm:FormGroup;
 
-  car:any;
-  house:any;
-  pets:any[];
-  employee: any;
-  projects:any[]
+  employee: Employee;
+  car:Car;
+  house:House;
+  pets:Pet[];
+  projects:Project[];
+  
   
   constructor(
     private service: AppService,
@@ -62,8 +69,13 @@ export class UpdateuserComponent implements OnInit {
        
       })
 
-      this.projects=[]
-      this.pets=[]
+      
+   this.car = new Car('','',0)
+    this.house = new House('','','','')
+    this.projects=[]
+    this.pets = []
+    this.employee = new Employee(0,'',0,'','',this.car,this.house,this.pets,this.projects)
+    this.emp= new Employee(0,'',0,'','',this.car,this.house,this.pets,this.projects)
       }
 
   ngOnInit(): void {

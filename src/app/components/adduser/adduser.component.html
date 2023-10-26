@@ -62,21 +62,9 @@
             </div>
           </div>
          
+          <h2>Car</h2>
+          <div formGroupName="car">
           
-          
-          <div class="row">
-            <div class="col-md-12 form-group">
-              <input  class="btn btn-primary w-100" type="submit" value="Submit">
-            </div>
-          </div>
-
-          <div>
-            
-          </div>
-        </form>
-
-        <h2>Car</h2>
-        <form [formGroup]="carForm" (ngSubmit)="onSubmitCar()">
           <div class="row">
             <div class="col-md-12 form-group mb-3">
               <label for="model" class="form-label">Model</label>
@@ -94,14 +82,14 @@
 
           <div class="row">
             <div class="col-md-12 form-group">
-              <input  class="btn btn-primary w-100" type="submit" value="SubmitCar">
+              <button (click)="onSubmitCar()">Add Car</button>
             </div>
           </div>
+        </div> 
 
-        </form>  
-        
-        <h2>House</h2>
-        <form [formGroup]="houseForm" (ngSubmit)="onSubmitHouse()">
+          <h2>House</h2>
+          <div formGroupName="house">
+          
           <div class="row">
             <div class="col-md-12 form-group mb-3">
               <label for="adress" class="form-label">Adress</label>
@@ -126,14 +114,14 @@
           
           <div class="row">
             <div class="col-md-12 form-group">
-              <input  class="btn btn-primary w-100" type="submit" value="SubmitHouse">
+              <button (click)="onSubmitHouse()">Add House</button>
             </div>
           </div>
 
-        </form>  
+        </div>
 
         <h2>Pets</h2>
-        <form [formGroup]="petForm" (ngSubmit)="onSubmitPet()">
+        <div formGroupName="pets">
           <div class="row">
             <div class="col-md-12 form-group mb-3">
               <label for="vid" class="form-label">Vid</label>
@@ -151,37 +139,59 @@
 
           <div class="row">
             <div class="col-md-12 form-group">
-              <input  class="btn btn-primary w-100" type="submit" value="SubmitPet">
+              <button (click)="onSubmitPet()">Add Pet</button>
             </div>
           </div>
 
-        </form>  
+
+        </div>
+
+        
         
         <h2>Projects</h2>
-        <form [formGroup]="projectForm" (ngSubmit)="onSubmitProject()">
+        <div formGroupName="projects">
+
           <div class="row">
-            <div class="col-md-12 form-group mb-3">
-              <label for="title" class="form-label">Title</label>
-              <input id="title" type="text" name="title"  formControlName="title" class="form-control" placeholder="title" required>
-            </div>
+          <div class="col-md-12 form-group mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input id="title" type="text" name="title"  formControlName="title" class="form-control" placeholder="title" required>
+          
           </div>
-         
-          <!--PNo-->
-          <div class="row">
-            <div class="col-md-12 form-group mb-3">
-              <label for="year" class="form-label">Yeae</label>
-              <input id="year" type="text" name="year"  formControlName="year" class="form-control" placeholder="year" required>
-            </div>
+        </div>
+       
+        <!--PNo-->
+        <div class="row">
+          <div class="col-md-12 form-group mb-3">
+            <label for="year" class="form-label">Yeae</label>
+            <input id="year" type="text" name="year"  formControlName="year" class="form-control" placeholder="year" required>
           </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <button (click)="onSubmitProject()">Add Project</button>
+          </div>
+        </div>
+
+        </div>
+
+
 
           <div class="row">
             <div class="col-md-12 form-group">
-              <input  class="btn btn-primary w-100" type="submit" value="SubmitProject">
+              <input  class="btn btn-primary w-100" type="submit" value="Submit">
             </div>
           </div>
 
-        </form>  
+          <div>
+            
+          </div>
+        </form>
 
+        
+
+        
+        
       </div>
     </div>
 </body>

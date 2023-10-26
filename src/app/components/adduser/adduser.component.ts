@@ -5,6 +5,9 @@ import { EmployeeId } from 'src/app/EmployeeId';
 import { AppService } from 'src/app/app.service';
 import { Project } from 'src/app/Project';
 import { Employee } from 'src/app/Employee';
+import { Car } from 'src/app/Car';
+import { House } from 'src/app/House';
+import {Pet} from 'src/app/Pet'
 
 @Component({
   selector: 'app-adduser',
@@ -14,16 +17,18 @@ import { Employee } from 'src/app/Employee';
 export class AdduserComponent implements OnInit {
  
   employeeForm: FormGroup;
-  projectForm: FormGroup;
-  carForm:FormGroup;
-  houseForm:FormGroup;
-  petForm:FormGroup;
+  //projectForm: FormGroup;
+  //carForm:FormGroup;
+  //houseForm:FormGroup;
+  //petForm:FormGroup;
 
-  employee: any;
-  car:any;
-  house:any;
-  pets:any[];
-  projects:any[];
+  emp:Employee;
+  employee: Employee;
+  car:Car;
+  house:House;
+  pets:Pet[];
+  pet:Pet;
+  projects:Project[];
   data:any
 
   constructor(private service: AppService, private router: Router,private formBuilder: FormBuilder) { 
@@ -32,33 +37,60 @@ export class AdduserComponent implements OnInit {
       surname: ['', Validators.required],
       salary:['',Validators.required],
       department:['',Validators.required],
+
+      car: this.formBuilder.group({
+        model: ['', Validators.required],
+        made: ['', Validators.required]
+      }),
+
+      house: this.formBuilder.group({
+        adress: ['', Validators.required],
+        flour: ['', Validators.required],
+        flat: ['', Validators.required]
+      }),
+
+      pets: this.formBuilder.group({
+        vid: ['', Validators.required],
+        petname: ['', Validators.required]
+      }),
+
+      projects : this.formBuilder.group({
+        title: ['', Validators.required],
+        year: ['', Validators.required]
+      })
+
     });
 
     
-    this.carForm = this.formBuilder.group({
-      model: ['', Validators.required],
-      made: ['', Validators.required]
-    });
+   // this.carForm = this.formBuilder.group({
+     // model: ['', Validators.required],
+     // made: ['', Validators.required]
+   // });
 
-    this.houseForm = this.formBuilder.group({
-      adress: ['', Validators.required],
-      flour: ['', Validators.required],
-      flat: ['', Validators.required],
-    });
+   // this.houseForm = this.formBuilder.group({
+     // adress: ['', Validators.required],
+      //flour: ['', Validators.required],
+     // flat: ['', Validators.required],
+  //  });
 
-    this.petForm = this.formBuilder.group({
-      vid: ['', Validators.required],
-      petname: ['', Validators.required]
-    });
+   // this.petForm = this.formBuilder.group({
+    //  vid: ['', Validators.required],
+     // petname: ['', Validators.required]
+  //  });
 
-    this.projectForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      year: ['', Validators.required]
-    });
+   //// this.projectForm = this.formBuilder.group({
+     /// title: ['', Validators.required],
+      //year: ['', Validators.required]
+  //  });
 
     //this.employee = new Employee(0,'',0, '','', []);
+    this.car = new Car('','',0)
+    this.house = new House('','','','')
     this.projects=[]
     this.pets = []
+    this.employee = new Employee(0,'',0,'','',this.car,this.house,this.pets,this.projects)
+    this.emp = new Employee(0,'',0,'','',this.car,this.house,this.pets,this.projects)
+    this.pet = new Pet(0,'','')
   }
 
   ngOnInit() {
@@ -69,10 +101,25 @@ export class AdduserComponent implements OnInit {
     if (this.employeeForm.invalid) {
       return;
     }
-    this.data=this.employeeForm.value;
-    this.employee = {...this.data,car:this.car,house:this.house,pets:this.pets.concat(), projects:this.projects.concat()}
+   // this.data=this.employeeForm.value;
+    this.emp=this.employeeForm.value;
+   // console.log(this.emp);
+
+    this.employee.name=this.emp.name;
+    this.employee.surname=this.emp.surname;
+    this.employee.salary=this.emp.salary;
+    this.employee.department=this.emp.department;
+    this.employee.car=this.car;
+    this.employee.house = this.house;
+
+    this.employee.pets = this.pets;
+    this.employee.projects = this.projects;
+
+    console.log(this.employee.pets);
+    console.log(this.employee.projects);
+    //this.employee = {...this.data,pets:this.pets.concat(), projects:this.projects.concat()}
    
-    console.log(this.projects)
+    //console.log(this.projects)
     console.log(this.employee)
     
 
@@ -87,32 +134,42 @@ export class AdduserComponent implements OnInit {
 
 
   onSubmitCar(){
-    this.car = this.carForm.value;
+    this.emp = this.employeeForm.value;
+    console.log(this.emp);
+    this.car = this.emp.car;
   }
 
   onSubmitHouse(){
-    this.house = this.houseForm.value;
+    this.emp = this.employeeForm.value;
+    console.log(this.emp);
+    this.house = this.emp.house;
   }
 
   onSubmitPet(){
-    const pet = this.petForm.value;
-    this.pets.push(pet);
-
-    this.petForm.reset();
+    this.emp = this.employeeForm.value;
+   // const pet = this.emp.pets;
+   //console.log(this.emp)
+   //console.log("first")
+   //console.log(this.emp.pets);
+    this.pets=this.pets.concat(this.emp.pets);
+   // console.log("second")
+    console.log(this.pets)
   }
 
-  async onSubmitProject() {
-    if (this.projectForm.invalid) {
-      return;
-    }
+   onSubmitProject() {
+    //if (this.projectForm.invalid) {
+    //  return;
+    //}
 
     //const title =  await this.projectForm.get("title");
    // const year =  await this.projectForm.get("year");
+   this.emp = this.employeeForm.value;
+   // const project = this.emp.projects;
+   console.log(this.emp);
+    this.projects=this.projects.concat(this.emp.projects);
+    console.log(this.projects)
 
-    const project = this.projectForm.value;
-    await (this.projects.push(project));
-
-    this.projectForm.reset();
+   // this.projectForm.reset();
   }
     
  
