@@ -7,7 +7,7 @@ import { EmployeeId } from './EmployeeId';
 @Injectable({
     providedIn:'root'
 })
-//{ headers: { 'Content-Type': 'application/json' }
+
 export class AppService{
     private url = "http://localhost:8080/api1/employees";
 
@@ -31,6 +31,6 @@ export class AppService{
     deleteUser(id:number):Observable<any>{
         return this.http.delete<any>( `${this.url}/${id}`)
     }
-     // Add User - Create
+    
   
 }

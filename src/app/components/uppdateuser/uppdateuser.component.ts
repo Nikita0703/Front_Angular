@@ -20,12 +20,7 @@ export class UpdateuserComponent implements OnInit {
   emp: Employee;
   data: any;
   
-  form: FormGroup;
-  projectForm:FormGroup;
-  carForm:FormGroup;
-  houseForm:FormGroup;
-  petForm:FormGroup;
-
+  employeeForm: FormGroup;
   employee: Employee;
   car:Car;
   house:House;
@@ -37,37 +32,37 @@ export class UpdateuserComponent implements OnInit {
     private service: AppService,
      private route: ActivatedRoute, 
      private router : Router,
-     private fb:FormBuilder) {
-      this.form = this.fb.group({
-        id: new FormControl('',[Validators.required]),
-        name: new FormControl('', [Validators.required]),
-        surname: new FormControl('', [Validators.required]),
-        salary: new FormControl('', [Validators.required]),
-        department: new FormControl('', [Validators.required])
-      })
-     
-      this.carForm = this.fb.group({
-        model: ['', Validators.required],
-        made: ['', Validators.required]
-      });
+     private formBuilder:FormBuilder) {
+      
+      this.employeeForm = this.formBuilder.group({
+        name: ['', Validators.required],
+        surname: ['', Validators.required],
+        salary:['',Validators.required],
+        department:['',Validators.required],
   
-      this.houseForm = this.fb.group({
-        adress: ['', Validators.required],
-        flour: ['', Validators.required],
-        flat: ['', Validators.required],
-      });
+        car: this.formBuilder.group({
+          model: ['', Validators.required],
+          made: ['', Validators.required]
+        }),
   
-      this.petForm = this.fb.group({
-        vid: ['', Validators.required],
-        petname: ['', Validators.required]
-      });
-     
-      this.projectForm = this.fb.group({
-       
-        title: new FormControl('', [Validators.required]),
-        year: new FormControl('', [Validators.required]),
-       
-      })
+        house: this.formBuilder.group({
+          adress: ['', Validators.required],
+          flour: ['', Validators.required],
+          flat: ['', Validators.required]
+        }),
+  
+        pets: this.formBuilder.group({
+          vid: ['', Validators.required],
+          petname: ['', Validators.required]
+        }),
+  
+        projects : this.formBuilder.group({
+          title: ['', Validators.required],
+          year: ['', Validators.required]
+        })
+  
+      });  
+      
 
       
    this.car = new Car('','',0)
@@ -85,23 +80,21 @@ export class UpdateuserComponent implements OnInit {
       this.emp = data
       console.log(this.emp)
 
-      this.form.patchValue({
+      this.employeeForm.patchValue({
         id:this.emp.id,
         name: this.emp.name,
         surname: this.emp.surname,
         salary: this.emp.salary,
-        department: this.emp.department
-      });
-
-      this.carForm.patchValue({
-        model: this.emp.car.model,
-        made: this.emp.car.made,
-      });
-
-      this.houseForm.patchValue({
-        adress: this.emp.house.adress,
+        department: this.emp.department,
+        car: {
+          model: this.emp.car.model,
+          made: this.emp.car.made,
+        },
+        house: {
+          adress: this.emp.house.adress,
         flour: this.emp.house.flour,
         flat:this.emp.house.flat
+        }
       });
 
     
@@ -111,49 +104,70 @@ export class UpdateuserComponent implements OnInit {
 
   }
 
- 
+  async  onSubmitEmployee() {
+    if (this.employeeForm.invalid) {
+      return;
+    }
+  
+    this.emp=this.employeeForm.value;
+   
 
-  submit(){
-    this.data = this.form.value
-   
-    this.employee = {...this.data,car:this.car,house:this.house,pets:this.pets.concat(), projects:this.projects.concat()}
-   
-    this.service.updateUser(this.employee).subscribe(data => {
+    this.employee.name=this.emp.name;
+    this.employee.surname=this.emp.surname;
+    this.employee.salary=this.emp.salary;
+    this.employee.department=this.emp.department;
+    this.employee.car=this.car;
+    this.employee.house = this.house;
+
+    this.employee.pets = this.pets;
+    this.employee.projects = this.projects;
+
+    console.log(this.employee.pets);
+    console.log(this.employee.projects);
+    
+    console.log(this.employee)
+    
+
+    this.service.addEmployee( this.employee).subscribe(data =>{
       console.log(data)
-    })
-
-    this.router.navigate(['/']);
+       
+     this.router.navigate(['/']);
+  }
+     
+      )
   }
 
+
   onSubmitCar(){
-    this.car = this.carForm.value;
+    this.emp = this.employeeForm.value;
+    console.log(this.emp);
+    this.car = this.emp.car;
   }
 
   onSubmitHouse(){
-    this.house = this.houseForm.value;
+    this.emp = this.employeeForm.value;
+    console.log(this.emp);
+    this.house = this.emp.house;
   }
 
   onSubmitPet(){
-    const pet = this.petForm.value;
-    this.pets.push(pet);
-
-    this.petForm.reset();
+    this.emp = this.employeeForm.value;
+    this.pets=this.pets.concat(this.emp.pets);
+    console.log(this.pets)
   }
 
+   onSubmitProject() {
+    
+   this.emp = this.employeeForm.value;
+   
+   console.log(this.emp);
+    this.projects=this.projects.concat(this.emp.projects);
+    console.log(this.projects)
+  }
+    
+ 
 
-    async onSubmitProject() {
-      if (this.projectForm.invalid) {
-        return;
-      }
-  
-      //const title =  await this.projectForm.get("title");
-     // const year =  await this.projectForm.get("year");
-  
-      const project = this.projectForm.value;
-      await (this.projects.push(project));
-  
-      this.projectForm.reset();
-    }
+ 
   
 
 }

@@ -24,66 +24,46 @@
       </nav>
 
     
-    <!--Main Content-->
+
     <div class="my-5">
       <div class="mx-auto w-25 " style="max-width:100%;">
         <h2 class="text-center mb-3">Update Employee</h2>
-        <form  [formGroup]="form" (ngSubmit)="submit()" >
-
-          <div class="row">
-          <div class="col-md-12 form-group mb-3">
-            
-            <input id="id"  formControlName="id" type="hidden" name="id" class="form-control" placeholder="id" required>
-          </div>
-        </div>
-        
-          <!--Email-->
-         <div class="row">
-          <div class="col-md-12 form-group mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input id="name"  formControlName="name" type="text" name="name" class="form-control" placeholder="name" required>
-          </div>
-        </div>
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmitEmployee()">
          
-          <!--Email-->
           <div class="row">
             <div class="col-md-12 form-group mb-3">
-              <label for="surname" class="form-label">Surname</label>
-              <input id="surname"  formControlName="surname" type="text" name="surname" class="form-control" placeholder="surname" required>
+              <label for="name" class="form-label">Name</label>
+              <input id="name"  formControlName="name" type="text" name="name" class="form-control" placeholder="Name" required>
             </div>
           </div>
 
           
-          <!--PNo-->
+          <div class="row">
+            <div class="col-md-12 form-group mb-3">
+              <label for="surname" class="form-label">Surname</label>
+              <input id="surname" type="text"  formControlName="surname" name="surname" class="form-control" placeholder="Surname" required>
+            </div>
+          </div>
+          
+         
           <div class="row">
             <div class="col-md-12 form-group mb-3">
               <label for="salary" class="form-label">Salary</label>
-              <input id="salary" type="text" formControlName="salary" name="salary" class="form-control" placeholder="salary" required>
+              <input id="salary" type="text" name="salary"  formControlName="salary" class="form-control" placeholder="Salary" required>
             </div>
           </div>
          
-            
-          <!--PNo-->
+          
           <div class="row">
             <div class="col-md-12 form-group mb-3">
-              <label for="department" class="form-label">Department</label>
-              <input id="department" formControlName="department" type="text" name="department"  class="form-control" placeholder="department" required>
+              <label for="Department" class="form-label">Department</label>
+              <input id="Department" type="text" name="department"  formControlName="department" class="form-control" placeholder="Department" required>
             </div>
           </div>
          
-          <div class="row">
-            <div class="col-md-12 form-group">
-              <button [disabled]="!form.valid" class="btn btn-primary w-100" type="submit" value="Submit">Update</button>
-            </div>
-          </div>
-
-          <div>
-            
-          </div>
-        </form>
-
-        <h2>Car</h2>
-        <form [formGroup]="carForm" (ngSubmit)="onSubmitCar()">
+          <h2>Car</h2>
+          <div formGroupName="car">
+          
           <div class="row">
             <div class="col-md-12 form-group mb-3">
               <label for="model" class="form-label">Model</label>
@@ -91,7 +71,7 @@
             </div>
           </div>
          
-          <!--PNo-->
+          
           <div class="row">
             <div class="col-md-12 form-group mb-3">
               <label for="made" class="form-label">Year</label>
@@ -101,14 +81,14 @@
 
           <div class="row">
             <div class="col-md-12 form-group">
-              <input  class="btn btn-primary w-100" type="submit" value="SubmitCar">
+              <button (click)="onSubmitCar()">Add Car</button>
             </div>
           </div>
+        </div> 
 
-        </form>  
-        
-        <h2>House</h2>
-        <form [formGroup]="houseForm" (ngSubmit)="onSubmitHouse()">
+          <h2>House</h2>
+          <div formGroupName="house">
+          
           <div class="row">
             <div class="col-md-12 form-group mb-3">
               <label for="adress" class="form-label">Adress</label>
@@ -116,7 +96,7 @@
             </div>
           </div>
          
-          <!--PNo-->
+         
           <div class="row">
             <div class="col-md-12 form-group mb-3">
               <label for="flour" class="form-label">Flour</label>
@@ -133,14 +113,14 @@
           
           <div class="row">
             <div class="col-md-12 form-group">
-              <input  class="btn btn-primary w-100" type="submit" value="SubmitHouse">
+              <button (click)="onSubmitHouse()">Add House</button>
             </div>
           </div>
 
-        </form>  
+        </div>
 
         <h2>Pets</h2>
-        <form [formGroup]="petForm" (ngSubmit)="onSubmitPet()">
+        <div formGroupName="pets">
           <div class="row">
             <div class="col-md-12 form-group mb-3">
               <label for="vid" class="form-label">Vid</label>
@@ -148,7 +128,7 @@
             </div>
           </div>
          
-          <!--PNo-->
+          
           <div class="row">
             <div class="col-md-12 form-group mb-3">
               <label for="petname" class="form-label">Name</label>
@@ -158,36 +138,53 @@
 
           <div class="row">
             <div class="col-md-12 form-group">
-              <input  class="btn btn-primary w-100" type="submit" value="SubmitPet">
+              <button (click)="onSubmitPet()">Add Pet</button>
             </div>
           </div>
 
-        </form>  
+
+        </div>
+
         
-        <h2>                      Project</h2>
-        <form [formGroup]="projectForm" (ngSubmit)="onSubmitProject()">
-          
-          <div class="row">
-            <div class="col-md-12 form-group mb-3">
-              <label for="title" class="form-label">Title</label>
-              <input id="title" type="text" name="title"  formControlName="title" class="form-control" placeholder="title" required>
-            </div>
-          </div>
+        
+        <h2>Projects</h2>
+        <div formGroupName="projects">
 
-          <!--PNo-->
           <div class="row">
-            <div class="col-md-12 form-group mb-3">
-              <label for="year" class="form-label">Yeae</label>
-              <input id="year" type="text" name="year"  formControlName="year" class="form-control" placeholder="year" required>
-            </div>
+          <div class="col-md-12 form-group mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input id="title" type="text" name="title"  formControlName="title" class="form-control" placeholder="title" required>
+          
           </div>
+        </div>
+       
+      
+        <div class="row">
+          <div class="col-md-12 form-group mb-3">
+            <label for="year" class="form-label">Yeae</label>
+            <input id="year" type="text" name="year"  formControlName="year" class="form-control" placeholder="year" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <button (click)="onSubmitProject()">Add Project</button>
+          </div>
+        </div>
+
+        </div>
+
+
 
           <div class="row">
             <div class="col-md-12 form-group">
-              <input  class="btn btn-primary w-100" type="submit" value="SubmitProject">
+              <input  class="btn btn-primary w-100" type="submit" value="Submit">
             </div>
           </div>
 
+          <div>
+            
+          </div>
         </form>
       </div>
     </div>
