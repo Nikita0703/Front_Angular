@@ -70,21 +70,14 @@ export class AdduserComponent implements OnInit {
    
   }
 
- async  onSubmitEmployee() {
+  onSubmitEmployee() {
     if (this.employeeForm.invalid) {
       return;
     }
   
     this.emp=this.employeeForm.value;
-   
 
-    this.employee.name=this.emp.name;
-    this.employee.surname=this.emp.surname;
-    this.employee.salary=this.emp.salary;
-    this.employee.department=this.emp.department;
-    this.employee.car=this.car;
-    this.employee.house = this.house;
-
+    this.employee = this.emp;
     this.employee.pets = this.pets;
     this.employee.projects = this.projects;
 

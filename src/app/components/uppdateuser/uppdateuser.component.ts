@@ -104,7 +104,7 @@ export class UpdateuserComponent implements OnInit {
 
   }
 
-  async  onSubmitEmployee() {
+ onSubmitEmployee() {
     if (this.employeeForm.invalid) {
       return;
     }

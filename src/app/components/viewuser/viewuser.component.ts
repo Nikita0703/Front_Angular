@@ -29,9 +29,6 @@ url: string = "http://localhost:8080/api1/employee";
       this.users = this.users?.filter(user => user.id !== id);
     })
     
-      setTimeout(()=>{
-        window.location.reload();
-      }, 100);
   
   }
 
