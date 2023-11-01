@@ -21,7 +21,7 @@ export class UpdateuserComponent implements OnInit {
   data: any;
   
   employeeForm: FormGroup;
-  employee: Employee;
+  employee: Employee|undefined;
   car:Car;
   house:House;
   pets:Pet[];
@@ -69,7 +69,6 @@ export class UpdateuserComponent implements OnInit {
     this.house = new House('','','','')
     this.projects=[]
     this.pets = []
-    this.employee = new Employee(0,'',0,'','',this.car,this.house,this.pets,this.projects)
     this.emp= new Employee(0,'',0,'','',this.car,this.house,this.pets,this.projects)
       }
 
@@ -112,12 +111,7 @@ export class UpdateuserComponent implements OnInit {
     this.emp=this.employeeForm.value;
    
 
-    this.employee.name=this.emp.name;
-    this.employee.surname=this.emp.surname;
-    this.employee.salary=this.emp.salary;
-    this.employee.department=this.emp.department;
-    this.employee.car=this.car;
-    this.employee.house = this.house;
+    this.employee = this.emp;
 
     this.employee.pets = this.pets;
     this.employee.projects = this.projects;

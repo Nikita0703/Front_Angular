@@ -18,7 +18,7 @@ export class AdduserComponent implements OnInit {
  
   employeeForm: FormGroup;
   emp:Employee;
-  employee: Employee;
+  employee: Employee|undefined;
   car:Car;
   house:House;
   pets:Pet[];
@@ -61,7 +61,6 @@ export class AdduserComponent implements OnInit {
     this.house = new House('','','','')
     this.projects=[]
     this.pets = []
-    this.employee = new Employee(0,'',0,'','',this.car,this.house,this.pets,this.projects)
     this.emp = new Employee(0,'',0,'','',this.car,this.house,this.pets,this.projects)
     this.pet = new Pet(0,'','')
   }
